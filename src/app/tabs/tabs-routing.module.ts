@@ -8,7 +8,6 @@ const routes: Routes = [
     path: 'tabs',
     component: TabsPage,
     children: [
-      
 
       {
         path: 'pain',
@@ -45,9 +44,9 @@ const routes: Routes = [
 
 
       {
-        // path: '',
-        // redirectTo: '/tabs/pain',
-        // pathMatch: 'full'
+         path: '',
+         redirectTo: '/tabs/pain',
+         pathMatch: 'full'
       }
     ]
   },

@@ -9,40 +9,51 @@
 
 <ion-content>
 
-    <ion-list>
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let symptom of symptoms | async" size="4">
+                <!-- tag ion-avatar irá trazer a imagem arredondada -->
+                <ion-avatar class="ion-align-items-center" *ngIf="symptom.imgUrl">
+                    <img [src]="symptom.imgUrl" alt="">
+
+                </ion-avatar>
+                <ion-item>
+                    <span>{{ symptom.name}}</span>
+                </ion-item>
+                <ion-toggle color="primary"></ion-toggle>
+
+
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+
+    <!-- <ion-list>
         <ion-item *ngFor="let symptom of symptoms | async">
             <ion-grid>
-                <!--grid -->
                 <ion-row>
                     <ion-col>
-                        <!--1-->
                         <ion-avatar class="ion-align-self-start" *ngIf="symptom.imgUrl">
                             <img [src]="symptom.imgUrl" alt="" />
                         </ion-avatar>
                     </ion-col>
                     <ion-col>
-                        <!--2-->
                         <span>{{ symptom.name}}</span>
                     </ion-col>
                     <ion-col>
-                        <!--3-->
-                        <span>{{ symptom.description}}</span>
-
+                        <span></span>
                     </ion-col>
                     <ion-col>
-                        <!--4-->
-
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col size="3">
-                        <!--1-->
-                        <!-- <span [innerHTML]="symptom.description"></span> -->
+                        <span [innerHTML]="symptom.description"></span>
                     </ion-col>
                 </ion-row>
             </ion-grid>
-            <!--/grid -->
         </ion-item>
     </ion-list>
 
-</ion-content>
+</ion-content> -->

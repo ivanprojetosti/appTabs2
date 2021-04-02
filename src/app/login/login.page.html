@@ -17,6 +17,6 @@
 
 
     <ion-button expand="block" color="danger" (click)="signIn()">Entrar</ion-button>
-    <ion-button expand="block" color="warning">Esqueceu a senha?</ion-button>
-    <ion-button expand="block" color="primary">Logout</ion-button>
+    <ion-button expand="block" color="warning" [routerLink]="['/signup/']">Cadastrar</ion-button>
+    <ion-button expand="block" color="primary" (click)="signOut">Logout</ion-button>
 </ion-content>

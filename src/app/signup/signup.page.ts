@@ -35,9 +35,7 @@ export class SignupPage implements OnInit {
   tipousuario: string;
   email: string;
   password: string;
-  // email: string;
-  // password: string;
-  // user: string;
+    user: string;
   // professionals: any[] = [];
 
   //professionalDescription: string;
@@ -72,17 +70,28 @@ export class SignupPage implements OnInit {
 
     try {
       await this.auth.registerPaciente(this.usersPaciente);
-      this.toast.showMessageTop('Usuário registrado com sucesso !!!', 'secondary');
+      this.toast.showMessageTop('Paciente registrado com sucesso !!!', 'secondary');
       this.router.navigate(['login']);
     } catch (error) {
       this.toast.showMessageTop(error,'danger');
     }
   }
 
-registerAgentesaude(){
+  async registerAgentesaude(){
+    this.usersAgentesaude.email = this.email;
+    this.usersAgentesaude.password = this.password;
+    this.usersAgentesaude.tipousuario = this.tipousuario;
+    // this.getProfessional(this.usersAgentesaude.id_professional);
 
+    try {
+      await this.auth.registerAgente(this.usersAgentesaude);
+      this.toast.showMessageBottom('Agente de Saúde registrado com sucesso !!!', 'secondary');
+      this.router.navigate(['login']);
+    } catch (error) {
+      this.toast.showMessageTop(error,'danger');
+    }
+  }
 
-}
 
 
 }

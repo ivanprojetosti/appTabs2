@@ -28,44 +28,79 @@ private user: string;
     this.afa.signOut();
     this.router.navigate(['/login']);
   }
-
-  registerPaciente(user: UsersPaciente){
+   registerPaciente(user: UsersPaciente){
     this.afa.createUserWithEmailAndPassword(user.email, user.password);
 
-    // this.afa.onAuthStateChanged((users)=>{
-    //   users.updateProfile({displayName: user.name, photoURL: ''});
-    //   if(users){
-    //     this.registerUserPaciente(user, users.uid);
-    //   }
-    // })
+     //this.afa.onAuthStateChanged((users)=>{
+      this.afa.onAuthStateChanged((credential)=>{
+       credential.updateProfile({displayName: user.name, photoURL: ''});
+       if(credential){
+         this.registerUserPaciente(user, credential.uid);
+       }
+     })
   }
 
   registerUserPaciente(user: UsersPaciente, id: string){
     const { tipousuario,
       name,
-      email } = user;
+      email, 
+      cartaosus,
+      faixaetaria,
+      zipcode,
+      address,
+      address_district,
+      address_number,
+      address_city,
+      address_state,
+      address_complement, } = user;
     this.afs.collection('users').doc(id).set(
       {
+        tipousuario: tipousuario,
         name: name,
         email: email,
+        cartaosus: cartaosus,
+        faixaetaria: faixaetaria,
+        zipcode: zipcode,
+        address: address,
+        address_district: address_district,
+        address_number: address_number,
+        address_city: address_city,
+        address_state: address_state,
+        address_complement: address_complement
         
       }
     )
   }
 
   registerAgente(user: UsersAgentesaude){
-    this.afa.createUserWithEmailAndPassword(user.email, user.password);
+     this.afa.createUserWithEmailAndPassword(user.email, user.password);
 
-    this.afa.onAuthStateChanged((userProfile)=>{
-      userProfile.updateProfile({displayName: user.name, photoURL: ''});
-      if(userProfile){
-        this.registerAgentesaude(user, userProfile.uid);
-      }
-    })
-  }
+     this.afa.onAuthStateChanged((credential)=>{
+       credential.updateProfile({displayName: user.name, photoURL: ''});
+       
+       if(credential){
+         this.registerAgentesaude(user, credential.uid);
+       }
+     })
+   }
 
-  registerAgentesaude(user: UsersAgentesaude, id: string){
-    
+   registerAgentesaude(user: UsersAgentesaude, id: string){
+     const { tipousuario, 
+      name, 
+      email, 
+      registro, 
+      estado } = user;
+ this.afs.collection('users').doc(id).set(
+   {
+     tipousuario: tipousuario,
+     name: name,
+     email: email,
+     registro: registro,
+     estado: estado
+    // id_professional: id_professional,
+     //professional: professional,
+   }
+ )
 }
 
 
